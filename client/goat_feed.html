@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goat Feed - Agri-Products</title>
+    <link rel="stylesheet" href="sparate.css">
+    <style>
+        .add-to-cart {
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .add-to-cart.clicked {
+            background-color: #28A745; /* Green color */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="goatbanner.png" alt="" class="goatb">
+    </header>
+    <main>
+        <div class="product-list">
+            <div class="product-item" data-id="gf1">
+                <img src="g1.jpg" alt="Goat Feed 1">
+                <h2>Goat Feed 1</h2>
+                <p>Price: $205.00</p>
+                <p>Description: Nutritious Goat feed.</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-item" data-id="gf2">
+                <img src="g2.jpg" alt="Goat Feed 2">
+                <h2>Goat Feed 2</h2>
+                <p>Price: $203.00</p>
+                <p>Description: Nutritious Goat feed.</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-item" data-id="gf3">
+                <img src="g3.jpg" alt="Goat Feed 3">
+                <h2>Goat Feed 3</h2>
+                <p>Price: $201.00</p>
+                <p>Description: Nutritious Goat feed.</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-item" data-id="gf4">
+                <img src="g4.jpg" alt="Goat Feed 4">
+                <h2>Goat Feed 4</h2>
+                <p>Price: $201.00</p>
+                <p>Description: Nutritious Goat feed.</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-item" data-id="gf5">
+                <img src="g5.jpg" alt="Goat Feed 5">
+                <h2>Goat Feed 5</h2>
+                <p>Price: $203.00</p>
+                <p>Description: Nutritious Goat feed.</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Agri-Products</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.add-to-cart');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const productItem = this.closest('.product-item');
+                    const productId = productItem.getAttribute('data-id');
+                    const productName = productItem.querySelector('h2').innerText;
+                    const productPrice = productItem.querySelector('p').innerText.replace('Price: $', '');
+
+                    const data = {
+                        id: productId,
+                        name: productName,
+                        price: productPrice
+                    };
+
+                    fetch('add_to_cart.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            button.classList.add('clicked');
+                            alert('Product added to cart!');
+                            button.textContent = 'Added!';
+                        } else {
+                            alert('Failed to add product to cart.');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+header {
+    background: #000000;
+    color: white;
+    padding: 10px 0;
+}
+
+header .logo h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+.our
+{
+    font-size:30px ;
+    text-shadow: 2px 2px 4px rgb(30, 27, 27);
+    color: rgb(13, 208, 20);
+}
+.hero {
+    text-align: center;
+    padding: 50px 0;
+    background: #f4f4f4;
+    background: linear-gradient(to right, rgba(215, 240, 215, 0.8), rgba(45, 255, 119, 0.8))
+
+}
+
+.hero h2 {
+    margin: 0 0 20px;
+}
+
+.hero p {
+    margin: 0 0 20px;
+}
+
+.hero .cta {
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.products {
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+    
+}
+
+.overlay-content {
+    position: relative;
+    z-index: 1;
+}
+
+.product-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    background: linear-gradient(to right, rgb(59, 70, 59), rgb(0, 0, 0));
+    padding: 20px;
+    margin: 5px;
+    flex: 1 1 30%;
+    min-width: 200px;
+    max-width: 300px;
+    text-shadow: 2px 0px 2px black;
+}
+.product-item:hover
+{
+   background:black ;
+   box-shadow: 0px 5px 0px rgb(50, 212, 88);
+   z-index: inherit;
+   transform: translateY(-6px);
+   transform: translateX(+8px);
+   
+}
+.product-logo {
+    width: 90px; /* Adjust size as needed */
+    height: 90px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the logo round */
+    margin-right: 200px;
+   
+}
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+li:hover
+{
+    box-shadow: 1px 5px 3px rgb(50, 212, 88);
+    transform: translateY(-4px);
+}
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    border-radius: 50%;
+    object-fit: cover;
+}
+.se
+{
+    text-decoration: none;
+    color: #f4f4f4;
+
+}

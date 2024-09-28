@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeds - Agri-Products</title>
+    <link rel="stylesheet" href="sparate.css">
+    <style>
+        .add-to-cart {
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .add-to-cart.clicked {
+            background-color: #28A745; /* Green color */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="seedbanner.png" alt="" class="seeb">
+    </div>
+    <main>
+        <div class="product-list">
+            <!-- Example Product Items -->
+            <div class="product-item" data-id="s1">
+                <img src="se1.jpg" alt="Seed 1">
+                <h2>Seed 1</h2>
+                <p>Price: $109.00</p>
+                <p>Description: High-quality seed for your farm.</p>
+                <button class="add-to-cart">Add to cart</button>
+            </div><br>
+            <div class="product-item" data-id="s2">
+                <img src="se3.jpg" alt="Seed 2">
+                <h2>Seed 2</h2>
+                <p>Price: $1056.00</p>
+                <p>Description: High-quality seed for your farm.</p>
+                <button class="add-to-cart">Add to cart</button>
+            </div><br>
+            <div class="product-item" data-id="s3">
+                <img src="se2.jpg" alt="Seed 3">
+                <h2>Seed 3</h2>
+                <p>Price: $140.00</p>
+                <p>Description: High-quality seed for your farm.</p>
+                <button class="add-to-cart">Add to cart</button>
+            </div><br>
+            <div class="product-item" data-id="s4">
+                <img src="se4.jpg" alt="Seed 4">
+                <h2>Seed 4</h2>
+                <p>Price: $170.00</p>
+                <p>Description: High-quality seed for your farm.</p>
+                <button class="add-to-cart">Add to cart</button>
+            </div>
+            <!-- Repeat for more items -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Agri-Products</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.add-to-cart');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const productItem = this.closest('.product-item');
+                    const productId = productItem.getAttribute('data-id');
+                    const productName = productItem.querySelector('h2').innerText;
+                    const productPrice = productItem.querySelector('p').innerText.replace('Price: $', '');
+
+                    const data = {
+                        id: productId,
+                        name: productName,
+                        price: productPrice
+                    };
+
+                    fetch('add_to_cart.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Change button style to green on success
+                            button.classList.add('clicked');
+                            alert('Product added to cart!');
+                            button.textContent = 'Added!';
+                        } else {
+                            alert('Failed to add product to cart.');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
+            });
+        });
+    </script>
+</body>
+</html>
